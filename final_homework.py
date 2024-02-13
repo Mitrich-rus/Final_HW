@@ -1,8 +1,15 @@
+import pandas as pd
 import random
-from pandas import pd
+
 lst = ['robot'] * 10
 lst += ['human'] * 10
 random.shuffle(lst)
-data = pd.DataFrame({'whoAmI':lst})
+data = pd.DataFrame({'whoAmI': lst})
 data.head()
-print(data)
+
+
+heads = data['whoAmI'].unique()
+one_hot_view = pd.DataFrame()
+for el in heads:
+    one_hot_view[el] = data['whoAmI'] == el
+print(one_hot_view.head())
